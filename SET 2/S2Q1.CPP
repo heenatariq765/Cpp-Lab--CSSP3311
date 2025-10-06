@@ -1,30 +1,33 @@
-/*Write a program with a class Point (x, y). Create a non-member function
-display(Point p) that takes a Point object by value and prints its coordinates.
-Observe how changes inside the function do not affect the original object.*/
-
+//Find Maximum and Minimum
+//Write a program to input n integers in an array and find the maximum and
+//minimum element using a function that takes an array pointer as a parameter.
 #include <iostream>
 using namespace std;
-class Point
-{
-    public:
-    int x, y;
-{
-    Point(int a, int b)
-    {
-        x = a;
-        y = b;
+void findMaxMin(int *arr, int n, int &max, int &min) {
+    max = arr[0];
+    min = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+        if (arr[i] < min) {
+            min = arr[i];
+        }
     }
-    void display();
-    void display(Point p)
-    {
-        cout << "x=" << p.x << endl;
-        cout << "y=" << p.y << endl;
-    }
-}
 };
-int main()
-{
-    Point p1(10, 20);
-    p1.display(p1);
+int main() {
+    int n;
+    cout << "Enter the number of elements: ";
+    cin >> n;
+    int *arr = new int[n];
+    cout << "Enter " << n << " integers:";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    int max, min;
+    findMaxMin(arr, n, max, min);
+    cout << "Maximum element: " << max << endl;
+    cout << "Minimum element: " << min << endl;
+    delete[] arr;
     return 0;
 }
